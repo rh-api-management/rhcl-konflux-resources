@@ -329,6 +329,24 @@ spec:
           method: webhook
           title: SBOM-event-to-Bombino
 
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-developer-portal-controller
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-rhcl-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-developer-portal-controller
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-developer-portal-controller
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
   
   - apiVersion: appstudio.redhat.com/v1alpha1
     kind: Application
@@ -979,3 +997,21 @@ spec:
           dockerfileUrl: Containerfile.coredns
           revision: rhcl-{{.version}}
           url: https://github.com/rh-api-management/coredns-product-build/
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-coredns
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-coredns
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-coredns
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-coredns
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
