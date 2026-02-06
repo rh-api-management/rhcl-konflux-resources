@@ -984,7 +984,7 @@ spec:
         git-provider-url: https://github.com
         test.appstudio.openshift.io/lastbuilttime: "1768482576"
       generation: 3
-      name: rhcl-{{.versionName}}-dns
+      name: rhcl-{{.versionName}}-coredns
     spec:
       application: rhcl-{{.versionName}}-coredns
       build-nudges-ref:
