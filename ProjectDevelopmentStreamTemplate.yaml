@@ -314,6 +314,24 @@ spec:
   - apiVersion: appstudio.redhat.com/v1alpha1
     kind: ImageRepository
     metadata:
+      name: rhcl-{{.versionName}}-rhcl-console-plugin-0-1-5
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-rhcl-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-rhcl-console-plugin-0-1-5
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-rhcl-console-plugin-0-1-5
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
       name: rhcl-{{.versionName}}-wasm-shim
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-rhcl-operator
