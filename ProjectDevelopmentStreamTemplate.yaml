@@ -1,0 +1,981 @@
+apiVersion: projctl.konflux.dev/v1beta1
+kind: ProjectDevelopmentStreamTemplate
+metadata:
+  name: rhcl-template
+spec:
+  project: connectivity-link
+  variables:
+  - name: version
+    description: A version number for a new development stream
+  - name: versionName
+    description: A K8s-compliant name for the version
+    defaultValue: "{{hyphenize .version}}"
+
+  resources:
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Application
+    metadata:
+      name: "rhcl-{{.versionName}}-rhcl-operator"
+    spec:
+      displayName: "rhcl-{{.versionName}}-rhcl-operator"
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-multi-platform-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/rhcl-operator-product-build/pull/117","configuration-time":"Mon,
+          22 Sep 2025 10:35:54 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482576"
+      generation: 3
+      name: rhcl-{{.versionName}}-rhcl-operator
+    spec:
+      application: rhcl-{{.versionName}}-rhcl-operator
+      build-nudges-ref:
+      - rhcl-{{.versionName}}-rhcl-operator-bundle
+      componentName: rhcl-{{.versionName}}-rhcl-operator
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-rhcl-operator
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.rhcl-operator
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/rhcl-operator-product-build/
+
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/rhcl-operator-product-build/pull/118","configuration-time":"Mon,
+          22 Sep 2025 10:36:01 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482577"
+      generation: 2
+      name: rhcl-{{.versionName}}-rhcl-operator-bundle
+      namespace: api-management-tenant
+    spec:
+      application: rhcl-{{.versionName}}-rhcl-operator
+      componentName: rhcl-{{.versionName}}-rhcl-operator-bundle
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-rhcl-operator-bundle
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.rhcl-operator-bundle
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/rhcl-operator-product-build/
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/rhcl-operator-product-build/pull/119","configuration-time":"Mon,
+          22 Sep 2025 10:36:44 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482576"
+      generation: 2
+      name: rhcl-{{.versionName}}-rhcl-operator-bundle-stage
+      namespace: api-management-tenant
+    spec:
+      application: rhcl-{{.versionName}}-rhcl-operator
+      componentName: rhcl-{{.versionName}}-rhcl-operator-bundle-stage
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-rhcl-operator-bundle-stage
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.rhcl-operator-bundle-stage
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/rhcl-operator-product-build/
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/rhcl-operator-product-build/pull/120","configuration-time":"Mon,
+          22 Sep 2025 10:37:21 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482576"
+      generation: 2
+      name: rhcl-{{.versionName}}-rhcl-operator-bundle-dev
+      namespace: api-management-tenant
+    spec:
+      application: rhcl-{{.versionName}}-rhcl-operator
+      componentName: rhcl-{{.versionName}}-rhcl-operator-bundle-dev
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-rhcl-operator-bundle-dev
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.rhcl-operator-bundle-dev
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/rhcl-operator-product-build/
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-multi-platform-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/rhcl-console-plugin-product-build/pull/36","configuration-time":"Mon,
+          22 Sep 2025 10:15:33 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1764695169"
+      generation: 3
+      name: rhcl-{{.versionName}}-rhcl-console-plugin
+      namespace: api-management-tenant
+    spec:
+      application: rhcl-{{.versionName}}-rhcl-operator
+      build-nudges-ref:
+      - rhcl-{{.versionName}}-rhcl-operator-bundle
+      componentName: rhcl-{{.versionName}}-rhcl-console-plugin
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-rhcl-console-plugin
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.console-plugin
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/rhcl-console-plugin-product-build
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-multi-platform-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/rhcl-console-plugin-product-build/pull/36","configuration-time":"Mon,
+          22 Sep 2025 10:15:33 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1764695169"
+      generation: 3
+      name: rhcl-{{.versionName}}-rhcl-console-plugin-0-1-5
+      namespace: api-management-tenant
+    spec:
+      application: rhcl-{{.versionName}}-rhcl-operator
+      build-nudges-ref:
+      - rhcl-{{.versionName}}-rhcl-operator-bundle
+      componentName: rhcl-{{.versionName}}-rhcl-console-plugin-0-1-5
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-rhcl-console-plugin-0-1-5
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.console-plugin-0.1.5
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/rhcl-console-plugin-product-build
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-multi-platform-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/wasm-shim-product-build/pull/40","configuration-time":"Mon,
+          22 Sep 2025 09:48:34 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1764695169"
+      generation: 3
+      name: rhcl-{{.versionName}}-wasm-shim
+      namespace: api-management-tenant
+    spec:
+      application: rhcl-{{.versionName}}-rhcl-operator
+      build-nudges-ref:
+      - rhcl-{{.versionName}}-rhcl-operator-bundle
+      componentName: rhcl-{{.versionName}}-wasm-shim
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-wasm-shim
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.wasm-shim
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/wasm-shim-product-build
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-multi-platform-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/wasm-shim-product-build/pull/40","configuration-time":"Mon,
+          22 Sep 2025 09:48:34 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1764695169"
+      generation: 3
+      name: rhcl-{{.versionName}}-developer-portal-controller
+      namespace: api-management-tenant
+    spec:
+      application: rhcl-{{.versionName}}-rhcl-operator
+      build-nudges-ref:
+      - rhcl-{{.versionName}}-rhcl-operator-bundle
+      componentName: rhcl-{{.versionName}}-developer-portal-controller
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-developer-portal-controller
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.developer-portal-controller
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/developer-portal-controller-product-build
+            
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-rhcl-operator
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-rhcl-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-rhcl-operator
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-rhcl-operator
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-rhcl-operator-bundle
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-rhcl-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-rhcl-operator-bundle
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-rhcl-operator-bundle
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-rhcl-operator-bundle-stage
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-rhcl-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-rhcl-operator-bundle-stage
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-rhcl-operator-bundle-stage
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-rhcl-operator-bundle-dev
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-rhcl-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-rhcl-operator-bundle-dev
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-rhcl-operator-bundle-dev
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-rhcl-console-plugin
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-rhcl-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-rhcl-console-plugin
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-rhcl-console-plugin
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-wasm-shim
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-rhcl-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-wasm-shim
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-wasm-shim
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Application
+    metadata:
+      name: "rhcl-{{.versionName}}-dns-operator"
+    spec:
+      displayName: "rhcl-{{.versionName}}-dns-operator"
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-multi-platform-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/dns-operator-product-build/pull/117","configuration-time":"Mon,
+          22 Sep 2025 10:35:54 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482576"
+      generation: 3
+      name: rhcl-{{.versionName}}-dns-operator
+    spec:
+      application: rhcl-{{.versionName}}-dns-operator
+      build-nudges-ref:
+      - rhcl-{{.versionName}}-dns-operator-bundle
+      componentName: rhcl-{{.versionName}}-dns-operator
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-dns
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.dns-operator
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/dns-operator-product-build/
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/dns-operator-product-build/pull/118","configuration-time":"Mon,
+          22 Sep 2025 10:36:01 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482577"
+      generation: 2
+      name: rhcl-{{.versionName}}-dns-operator-bundle
+      namespace: api-management-tenant
+    spec:
+      application: rhcl-{{.versionName}}-dns-operator
+      componentName: rhcl-{{.versionName}}-dns-operator-bundle
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-dns-operator-bundle
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.dns-operator-bundle
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/dns-operator-product-build/
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/dns-operator-product-build/pull/119","configuration-time":"Mon,
+          22 Sep 2025 10:36:44 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482576"
+      generation: 2
+      name: rhcl-{{.versionName}}-dns-operator-bundle-stage
+      namespace: api-management-tenant
+    spec:
+      application: rhcl-{{.versionName}}-dns-operator
+      componentName: rhcl-{{.versionName}}-dns-operator-bundle-stage
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-dns-operator-bundle-stage
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.dns-operator-bundle-stage
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/dns-operator-product-build/
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/dns-operator-product-build/pull/120","configuration-time":"Mon,
+          22 Sep 2025 10:37:21 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482576"
+      generation: 2
+      name: rhcl-{{.versionName}}-dns-operator-bundle-dev
+      namespace: api-management-tenant
+    spec:
+      application: rhcl-{{.versionName}}-dns-operator
+      componentName: rhcl-{{.versionName}}-dns-operator-bundle-dev
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-dns-operator-bundle-dev
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.dns-operator-bundle-dev
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/dns-operator-product-build/
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-dns-operator
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-dns-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-dns-operator
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-dns-operator
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-dns-operator-bundle
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-dns-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-dns-operator-bundle
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-dns-operator-bundle
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-dns-operator-bundle-stage
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-dns-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-dns-operator-bundle-stage
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-dns-operator-bundle-stage
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-dns-operator-bundle-dev
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-dns-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-dns-operator-bundle-dev
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-dns-operator-bundle-dev
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Application
+    metadata:
+      name: "rhcl-{{.versionName}}-authorino-operator"
+    spec:
+      displayName: "rhcl-{{.versionName}}-authorino-operator"
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-multi-platform-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/authorino-product-build/pull/25","configuration-time":"Mon,
+          18 Sep 2025 10:19:35 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482576"
+      generation: 3
+      name: rhcl-{{.versionName}}-authorino
+    spec:
+      application: rhcl-{{.versionName}}-authorino-operator
+      build-nudges-ref:
+      - rhcl-{{.versionName}}-authorino-operator-bundle
+      componentName: rhcl-{{.versionName}}-authorino
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-authorino
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.authorino
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/authorino-product-build/
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-multi-platform-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/authorino-operator-product-build/pull/117","configuration-time":"Mon,
+          22 Sep 2025 10:35:54 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482576"
+      generation: 3
+      name: rhcl-{{.versionName}}-authorino-operator
+    spec:
+      application: rhcl-{{.versionName}}-authorino-operator
+      build-nudges-ref:
+      - rhcl-{{.versionName}}-authorino-operator-bundle
+      componentName: rhcl-{{.versionName}}-authorino-operator
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-authorino-operator
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.authorino-operator
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/authorino-operator-product-build/
+
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/authorino-product-build/pull/25","configuration-time":"Mon,
+          22 Sep 2025 10:36:01 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482577"
+      generation: 2
+      name: rhcl-{{.versionName}}-authorino-operator-bundle
+      namespace: api-management-tenant
+    spec:
+      application: rhcl-{{.versionName}}-authorino-operator
+      componentName: rhcl-{{.versionName}}-authorino-operator-bundle
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-authorino-operator-bundle
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.authorino-operator-bundle
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/authorino-operator-product-build/
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/authorino-operator-product-build/pull/119","configuration-time":"Mon,
+          22 Sep 2025 10:36:44 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482576"
+      generation: 2
+      name: rhcl-{{.versionName}}-authorino-operator-bundle-stage
+      namespace: api-management-tenant
+    spec:
+      application: rhcl-{{.versionName}}-authorino-operator
+      componentName: rhcl-{{.versionName}}-authorino-operator-bundle-stage
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-authorino-operator-bundle-stage
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.authorino-operator-bundle-stage
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/authorino-operator-product-build/
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/authorino-operator-product-build/pull/120","configuration-time":"Mon,
+          22 Sep 2025 10:37:21 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482576"
+      generation: 2
+      name: rhcl-{{.versionName}}-authorino-operator-bundle-dev
+      namespace: api-management-tenant
+    spec:
+      application: rhcl-{{.versionName}}-authorino-operator
+      componentName: rhcl-{{.versionName}}-authorino-operator-bundle-dev
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-authorino-operator-bundle-dev
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.authorino-operator-bundle-dev
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/authorino-operator-product-build/
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-authorino
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-authorino-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-authorino
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-authorino
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-authorino-operator
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-authorino-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-authorino-operator
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-authorino-operator
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-authorino-operator-bundle
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-authorino-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-authorino-operator-bundle
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-authorino-operator-bundle
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-authorino-operator-bundle-stage
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-authorino-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-authorino-operator-bundle-stage
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-authorino-operator-bundle-stage
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-authorino-operator-bundle-dev
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-authorino-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-authorino-operator-bundle-dev
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-authorino-operator-bundle-dev
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+  
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Application
+    metadata:
+      name: "rhcl-{{.versionName}}-limitador-operator"
+    spec:
+      displayName: "rhcl-{{.versionName}}-limitador-operator"
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-multi-platform-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/limitador-product-build/pull/117","configuration-time":"Mon,
+          22 Sep 2025 10:35:54 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482576"
+      generation: 3
+      name: rhcl-{{.versionName}}-limitador
+    spec:
+      application: rhcl-{{.versionName}}-limitador-operator
+      build-nudges-ref:
+      - rhcl-{{.versionName}}-limitador-operator-bundle
+      componentName: rhcl-{{.versionName}}-limitador
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-limitador
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.limitador
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/limitador-product-build/
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-multi-platform-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/limitador-operator-product-build/pull/117","configuration-time":"Mon,
+          22 Sep 2025 10:35:54 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482576"
+      generation: 3
+      name: rhcl-{{.versionName}}-limitador-operator
+    spec:
+      application: rhcl-{{.versionName}}-limitador-operator
+      build-nudges-ref:
+      - rhcl-{{.versionName}}-limitador-operator-bundle
+      componentName: rhcl-{{.versionName}}-limitador-operator
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-limitador-operator
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.limitador-operator
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/limitador-operator-product-build/
+
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/limitador-operator-product-build/pull/118","configuration-time":"Mon,
+          22 Sep 2025 10:36:01 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482577"
+      generation: 2
+      name: rhcl-{{.versionName}}-limitador-operator-bundle
+      namespace: api-management-tenant
+    spec:
+      application: rhcl-{{.versionName}}-limitador-operator
+      componentName: rhcl-{{.versionName}}-limitador-operator-bundle
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-limitador-operator-bundle
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.limitador-operator-bundle
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/limitador-operator-product-build/
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/limitador-operator-product-build/pull/119","configuration-time":"Mon,
+          22 Sep 2025 10:36:44 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482576"
+      generation: 2
+      name: rhcl-{{.versionName}}-limitador-operator-bundle-stage
+      namespace: api-management-tenant
+    spec:
+      application: rhcl-{{.versionName}}-limitador-operator
+      componentName: rhcl-{{.versionName}}-limitador-operator-bundle-stage
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-limitador-operator-bundle-stage
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.limitador-operator-bundle-stage
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/limitador-operator-product-build/
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/limitador-operator-product-build/pull/120","configuration-time":"Mon,
+          22 Sep 2025 10:37:21 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482576"
+      generation: 2
+      name: rhcl-{{.versionName}}-limitador-operator-bundle-dev
+      namespace: api-management-tenant
+    spec:
+      application: rhcl-{{.versionName}}-limitador-operator
+      componentName: rhcl-{{.versionName}}-limitador-operator-bundle-dev
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-limitador-operator-bundle-dev
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.limitador-operator-bundle-dev
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/limitador-operator-product-build/
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-limitador
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-limitador-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-limitador
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-limitador
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-limitador-operator
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-limitador-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-limitador-operator
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-limitador-operator
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-limitador-operator-bundle
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-limitador-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-limitador-operator-bundle
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-limitador-operator-bundle
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-limitador-operator-bundle-stage
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-limitador-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-limitador-operator-bundle-stage
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-limitador-operator-bundle-stage
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: ImageRepository
+    metadata:
+      name: rhcl-{{.versionName}}-limitador-operator-bundle-dev
+      labels:
+        appstudio.redhat.com/application: rhcl-{{.versionName}}-limitador-operator
+        appstudio.redhat.com/component: rhcl-{{.versionName}}-limitador-operator-bundle-dev
+    spec:
+      image:
+        name: api-management-tenant/rhcl-{{.versionName}}-limitador-operator-bundle-dev
+        visibility: private
+      notifications:
+        - config:
+            url: 'https://bombino.preprod.api.redhat.com/v1/sbom/quay/push'
+          event: repo_push
+          method: webhook
+          title: SBOM-event-to-Bombino
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Application
+    metadata:
+      name: "rhcl-{{.versionName}}-coredns"
+    spec:
+      displayName: "rhcl-{{.versionName}}-coredns"
+
+  - apiVersion: appstudio.redhat.com/v1alpha1
+    kind: Component
+    metadata:
+      annotations:
+        build.appstudio.openshift.io/pipeline: '{"name":"docker-build-multi-platform-oci-ta","bundle":"latest"}'
+        build.appstudio.openshift.io/status: '{"pac":{"state":"enabled","merge-url":"https://github.com/rh-api-management/coredns-product-build/pull/117","configuration-time":"Mon,
+          22 Sep 2025 10:35:54 UTC"},"message":"done"}'
+        git-provider: github
+        git-provider-url: https://github.com
+        test.appstudio.openshift.io/lastbuilttime: "1768482576"
+      generation: 3
+      name: rhcl-{{.versionName}}-dns
+    spec:
+      application: rhcl-{{.versionName}}-coredns
+      build-nudges-ref:
+      - rhcl-{{.versionName}}-coredns-bundle
+      componentName: rhcl-{{.versionName}}-coredns
+      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-dns
+      resources: {}
+      source:
+        git:
+          dockerfileUrl: Containerfile.coredns
+          revision: rhcl-{{.version}}
+          url: https://github.com/rh-api-management/coredns-product-build/

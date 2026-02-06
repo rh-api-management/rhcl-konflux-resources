@@ -1,0 +1,6 @@
+apiVersion: projctl.konflux.dev/v1beta1
+kind: Project
+metadata:
+  name: connectivity-link
+spec:
+  displayName: "Red Hat Connectivity Link"

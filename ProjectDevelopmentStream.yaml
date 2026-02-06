@@ -1,0 +1,11 @@
+apiVersion: projctl.konflux.dev/v1beta1
+kind: ProjectDevelopmentStream
+metadata:
+  name: connectivity-link-1.3
+spec:
+  project: connectivity-link
+  template:
+    name: rhcl-template
+    values:
+    - name: version
+      value: "1.3"
