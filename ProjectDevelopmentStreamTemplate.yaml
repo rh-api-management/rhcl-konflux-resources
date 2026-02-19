@@ -217,6 +217,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-rhcl-operator
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-rhcl-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-rhcl-operator
@@ -235,6 +237,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-rhcl-operator-bundle
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-rhcl-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-rhcl-operator-bundle
@@ -253,6 +257,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-rhcl-operator-bundle-stage
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-rhcl-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-rhcl-operator-bundle-stage
@@ -271,6 +277,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-rhcl-operator-bundle-dev
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-rhcl-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-rhcl-operator-bundle-dev
@@ -289,6 +297,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-rhcl-console-plugin
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-rhcl-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-rhcl-console-plugin
@@ -307,6 +317,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-rhcl-console-plugin-0-1-5
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-rhcl-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-rhcl-console-plugin-0-1-5
@@ -325,6 +337,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-wasm-shim
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-rhcl-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-wasm-shim
@@ -343,6 +357,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-developer-portal-controller
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-rhcl-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-developer-portal-controller
@@ -462,6 +478,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-dns-operator
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-dns-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-dns-operator
@@ -480,6 +498,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-dns-operator-bundle
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-dns-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-dns-operator-bundle
@@ -498,6 +518,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-dns-operator-bundle-stage
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-dns-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-dns-operator-bundle-stage
@@ -516,6 +538,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-dns-operator-bundle-dev
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-dns-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-dns-operator-bundle-dev
@@ -660,6 +684,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-authorino
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-authorino-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-authorino
@@ -678,6 +704,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-authorino-operator
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-authorino-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-authorino-operator
@@ -696,6 +724,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-authorino-operator-bundle
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-authorino-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-authorino-operator-bundle
@@ -714,6 +744,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-authorino-operator-bundle-stage
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-authorino-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-authorino-operator-bundle-stage
@@ -732,6 +764,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-authorino-operator-bundle-dev
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-authorino-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-authorino-operator-bundle-dev
@@ -876,6 +910,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-limitador
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-limitador-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-limitador
@@ -894,6 +930,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-limitador-operator
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-limitador-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-limitador-operator
@@ -912,6 +950,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-limitador-operator-bundle
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-limitador-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-limitador-operator-bundle
@@ -930,6 +970,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-limitador-operator-bundle-stage
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-limitador-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-limitador-operator-bundle-stage
@@ -948,6 +990,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-limitador-operator-bundle-dev
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-limitador-operator
         appstudio.redhat.com/component: rhcl-{{.versionName}}-limitador-operator-bundle-dev
@@ -997,6 +1041,8 @@ spec:
     kind: ImageRepository
     metadata:
       name: rhcl-{{.versionName}}-coredns
+      annotations:
+        image-controller.appstudio.redhat.com/update-component-image: "true"
       labels:
         appstudio.redhat.com/application: rhcl-{{.versionName}}-coredns
         appstudio.redhat.com/component: rhcl-{{.versionName}}-coredns
