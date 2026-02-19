@@ -36,7 +36,6 @@ spec:
       build-nudges-ref:
       - rhcl-{{.versionName}}-rhcl-operator-bundle
       componentName: rhcl-{{.versionName}}-rhcl-operator
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-rhcl-operator
       resources: {}
       source:
         git:
@@ -61,7 +60,6 @@ spec:
     spec:
       application: rhcl-{{.versionName}}-rhcl-operator
       componentName: rhcl-{{.versionName}}-rhcl-operator-bundle
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-rhcl-operator-bundle
       resources: {}
       source:
         git:
@@ -85,7 +83,6 @@ spec:
     spec:
       application: rhcl-{{.versionName}}-rhcl-operator
       componentName: rhcl-{{.versionName}}-rhcl-operator-bundle-stage
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-rhcl-operator-bundle-stage
       resources: {}
       source:
         git:
@@ -109,7 +106,6 @@ spec:
     spec:
       application: rhcl-{{.versionName}}-rhcl-operator
       componentName: rhcl-{{.versionName}}-rhcl-operator-bundle-dev
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-rhcl-operator-bundle-dev
       resources: {}
       source:
         git:
@@ -135,7 +131,6 @@ spec:
       build-nudges-ref:
       - rhcl-{{.versionName}}-rhcl-operator-bundle
       componentName: rhcl-{{.versionName}}-rhcl-console-plugin
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-rhcl-console-plugin
       resources: {}
       source:
         git:
@@ -161,7 +156,6 @@ spec:
       build-nudges-ref:
       - rhcl-{{.versionName}}-rhcl-operator-bundle
       componentName: rhcl-{{.versionName}}-rhcl-console-plugin-0-1-5
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-rhcl-console-plugin-0-1-5
       resources: {}
       source:
         git:
@@ -187,7 +181,6 @@ spec:
       build-nudges-ref:
       - rhcl-{{.versionName}}-rhcl-operator-bundle
       componentName: rhcl-{{.versionName}}-wasm-shim
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-wasm-shim
       resources: {}
       source:
         git:
@@ -213,7 +206,6 @@ spec:
       build-nudges-ref:
       - rhcl-{{.versionName}}-rhcl-operator-bundle
       componentName: rhcl-{{.versionName}}-developer-portal-controller
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-developer-portal-controller
       resources: {}
       source:
         git:
@@ -390,7 +382,6 @@ spec:
       build-nudges-ref:
       - rhcl-{{.versionName}}-dns-operator-bundle
       componentName: rhcl-{{.versionName}}-dns-operator
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-dns
       resources: {}
       source:
         git:
@@ -414,7 +405,6 @@ spec:
     spec:
       application: rhcl-{{.versionName}}-dns-operator
       componentName: rhcl-{{.versionName}}-dns-operator-bundle
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-dns-operator-bundle
       resources: {}
       source:
         git:
@@ -438,7 +428,6 @@ spec:
     spec:
       application: rhcl-{{.versionName}}-dns-operator
       componentName: rhcl-{{.versionName}}-dns-operator-bundle-stage
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-dns-operator-bundle-stage
       resources: {}
       source:
         git:
@@ -462,7 +451,6 @@ spec:
     spec:
       application: rhcl-{{.versionName}}-dns-operator
       componentName: rhcl-{{.versionName}}-dns-operator-bundle-dev
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-dns-operator-bundle-dev
       resources: {}
       source:
         git:
@@ -567,7 +555,6 @@ spec:
       build-nudges-ref:
       - rhcl-{{.versionName}}-authorino-operator-bundle
       componentName: rhcl-{{.versionName}}-authorino
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-authorino
       resources: {}
       source:
         git:
@@ -592,7 +579,6 @@ spec:
       build-nudges-ref:
       - rhcl-{{.versionName}}-authorino-operator-bundle
       componentName: rhcl-{{.versionName}}-authorino-operator
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-authorino-operator
       resources: {}
       source:
         git:
@@ -617,7 +603,6 @@ spec:
     spec:
       application: rhcl-{{.versionName}}-authorino-operator
       componentName: rhcl-{{.versionName}}-authorino-operator-bundle
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-authorino-operator-bundle
       resources: {}
       source:
         git:
@@ -641,7 +626,6 @@ spec:
     spec:
       application: rhcl-{{.versionName}}-authorino-operator
       componentName: rhcl-{{.versionName}}-authorino-operator-bundle-stage
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-authorino-operator-bundle-stage
       resources: {}
       source:
         git:
@@ -665,7 +649,6 @@ spec:
     spec:
       application: rhcl-{{.versionName}}-authorino-operator
       componentName: rhcl-{{.versionName}}-authorino-operator-bundle-dev
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-authorino-operator-bundle-dev
       resources: {}
       source:
         git:
@@ -788,7 +771,6 @@ spec:
       build-nudges-ref:
       - rhcl-{{.versionName}}-limitador-operator-bundle
       componentName: rhcl-{{.versionName}}-limitador
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-limitador
       resources: {}
       source:
         git:
@@ -813,7 +795,6 @@ spec:
       build-nudges-ref:
       - rhcl-{{.versionName}}-limitador-operator-bundle
       componentName: rhcl-{{.versionName}}-limitador-operator
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-limitador-operator
       resources: {}
       source:
         git:
@@ -838,7 +819,6 @@ spec:
     spec:
       application: rhcl-{{.versionName}}-limitador-operator
       componentName: rhcl-{{.versionName}}-limitador-operator-bundle
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-limitador-operator-bundle
       resources: {}
       source:
         git:
@@ -862,7 +842,6 @@ spec:
     spec:
       application: rhcl-{{.versionName}}-limitador-operator
       componentName: rhcl-{{.versionName}}-limitador-operator-bundle-stage
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-limitador-operator-bundle-stage
       resources: {}
       source:
         git:
@@ -886,7 +865,6 @@ spec:
     spec:
       application: rhcl-{{.versionName}}-limitador-operator
       componentName: rhcl-{{.versionName}}-limitador-operator-bundle-dev
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-limitador-operator-bundle-dev
       resources: {}
       source:
         git:
@@ -1008,7 +986,6 @@ spec:
       build-nudges-ref:
       - rhcl-{{.versionName}}-coredns-bundle
       componentName: rhcl-{{.versionName}}-coredns
-      containerImage: quay.io/redhat-user-workloads/api-management-tenant/rhcl-{{.versionName}}-dns
       resources: {}
       source:
         git:
